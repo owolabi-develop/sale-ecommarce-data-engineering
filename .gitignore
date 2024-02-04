@@ -1,0 +1,4 @@
+dbt-env
+logs
+__pycache__
+config
