@@ -38,17 +38,23 @@ GRANT USAGE ON INTEGRATION ecommarce_data_int TO ROLE ACCOUNTADMIN;
 use schema  ECOMMARCE.RAW_PRODUCTS;
 
 --CREATE FILE FORMAT 
-CREATE OR REPLACE FILE FORMAT products_csv_format
+CREATE OR REPLACE FILE FORMAT products_csv__with_double_qout_format
   TYPE = CSV
   FIELD_DELIMITER = ','
+  FIELD_OPTIONALLY_ENCLOSED_BY = '"'
   SKIP_HEADER = 1
   NULL_IF = ('NULL', 'null')
   EMPTY_FIELD_AS_NULL = true;
 
+CREATE OR REPLACE FILE FORMAT products_csv_format
+  TYPE = 'CSV'
+  FIELD_DELIMITER = ','
+  SKIP_HEADER = 1;
+
 CREATE or replace STAGE raw_ecommarce_stage
   STORAGE_INTEGRATION = ecommarce_data_int
-  URL = 's3://raw-ecommarce-data/raw/'
-  FILE_FORMAT = products_csv_format;
+  URL = 's3://raw-ecommarce-data/raw/';
+ 
 
 -- testing stage to retrive data
 list @raw_ecommarce_stage;
@@ -66,7 +72,6 @@ CREATE OR REPLACE SEQUENCE enhance_p;
 
  --- create product
 CREATE OR REPLACE TABLE ECOMMARCE.RAW_PRODUCTS.PRODUCT (
-    id NUMBER DEFAULT RAW_P.NEXTVAL,
     product_id VARCHAR NOT NULL,
     product_category_name VARCHAR,
     product_name_length INT,
@@ -76,7 +81,6 @@ CREATE OR REPLACE TABLE ECOMMARCE.RAW_PRODUCTS.PRODUCT (
 
 ---- create product details
 CREATE OR REPLACE TABLE ECOMMARCE.RAW_PRODUCTS.PRODUCT_DETAILS (
-    id NUMBER DEFAULT RAW_P.NEXTVAL,
     product_id VARCHAR NOT NULL,
     product_description_length INT,
     product_photos_qty INT,
@@ -92,16 +96,15 @@ CREATE OR REPLACE TABLE ECOMMARCE.RAW_PRODUCTS.PRODUCT_DETAILS (
 
  --- create product cagegory
 CREATE OR REPLACE TABLE ECOMMARCE.RAW_PRODUCTS.PRODUCT_CATEGORY_NAME(
-    ID NUMBER DEFAULT RAW_P.NEXTVAL,
-    product_category_name VARCHAR(45),
-    product_category_name_english VARCHAR(45)
+    --ID NUMBER DEFAULT RAW_P.NEXTVAL,
+    product_category_name VARCHAR,
+    product_category_name_english VARCHAR
 );
 
 
 --- create orders
 
 CREATE OR REPLACE TABLE ECOMMARCE.RAW_PRODUCTS.ORDERS (
-    id NUMBER DEFAULT RAW_P.NEXTVAL,
     order_id VARCHAR NOT NULL,
     customer_id VARCHAR,
     order_status VARCHAR,
@@ -117,7 +120,6 @@ CREATE OR REPLACE TABLE ECOMMARCE.RAW_PRODUCTS.ORDERS (
 
 --- create orderitems
 CREATE OR REPLACE TABLE ECOMMARCE.RAW_PRODUCTS.ORDER_ITEMS (
-    id NUMBER DEFAULT RAW_P.NEXTVAL,
     order_id VARCHAR,
     order_item_id INT,
     product_id VARCHAR,
@@ -134,7 +136,6 @@ CREATE OR REPLACE TABLE ECOMMARCE.RAW_PRODUCTS.ORDER_ITEMS (
 
 ---- create order review
 CREATE OR REPLACE TABLE ECOMMARCE.RAW_PRODUCTS.ORDER_REVIEWS (
-    id NUMBER DEFAULT RAW_P.NEXTVAL,
     review_id VARCHAR,
     order_id VARCHAR,
     review_score INT,
@@ -149,7 +150,6 @@ CREATE OR REPLACE TABLE ECOMMARCE.RAW_PRODUCTS.ORDER_REVIEWS (
  ---- create  GEOLOCATION
 
 CREATE OR REPLACE TABLE ECOMMARCE.RAW_PRODUCTS.GEOLOCATION (
-    id NUMBER DEFAULT RAW_P.NEXTVAL,
     geolocation_zip_code_prefix INT,
     geolocation_lat FLOAT,
     geolocation_lng FLOAT,
@@ -159,7 +159,6 @@ CREATE OR REPLACE TABLE ECOMMARCE.RAW_PRODUCTS.GEOLOCATION (
 
  --- create seller
 CREATE OR REPLACE TABLE ECOMMARCE.RAW_PRODUCTS.SELLER(
-     id NUMBER DEFAULT RAW_P.NEXTVAL,
      seller_id VARCHAR NOT NULL,
      seller_zip_code_prefix  VARCHAR,
      seller_city VARCHAR,
@@ -171,7 +170,6 @@ CREATE OR REPLACE TABLE ECOMMARCE.RAW_PRODUCTS.SELLER(
 -- create seller
 
 CREATE OR REPLACE TABLE ECOMMARCE.RAW_PRODUCTS.CUSTOMERS (
-    id NUMBER DEFAULT RAW_P.NEXTVAL,
     customer_id VARCHAR NOT NULL,
     customer_unique_id VARCHAR,
     customer_zip_code_prefix INT,
@@ -183,7 +181,6 @@ CREATE OR REPLACE TABLE ECOMMARCE.RAW_PRODUCTS.CUSTOMERS (
 
 
 CREATE OR REPLACE TABLE ECOMMARCE.RAW_PRODUCTS.PAYMENTS (
-    id NUMBER DEFAULT RAW_P.NEXTVAL,
     order_id VARCHAR,
     payment_sequential INT,
     payment_type VARCHAR,
