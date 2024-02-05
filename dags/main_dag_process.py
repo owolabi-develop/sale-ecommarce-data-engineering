@@ -27,18 +27,18 @@ from airflow.decorators import dag, task
     dagrun_timeout=datetime.timedelta(minutes=60),
 )
 def process_sales_dataset():
-    rawdata_path ="/mnt/c/Users/PROGRESSIVE/Desktop/dataengineers_projects/e-commarce-dataengineering-dbt-snowflake/dags/rawdata"
+    rawdata_path ="/opt/airflow/dags/rawdata"
     
     dataset_path = [
-        '/mnt/c/Users/PROGRESSIVE/Desktop/dataengineers_projects/e-commarce-dataengineering-dbt-snowflake/dataset/olist_customers_dataset.csv',
-        '/mnt/c/Users/PROGRESSIVE/Desktop/dataengineers_projects/e-commarce-dataengineering-dbt-snowflake/dataset/olist_geolocation_dataset.csv',
-        '/mnt/c/Users/PROGRESSIVE/Desktop/dataengineers_projects/e-commarce-dataengineering-dbt-snowflake/dataset/olist_order_items_dataset.csv',
-        '/mnt/c/Users/PROGRESSIVE/Desktop/dataengineers_projects/e-commarce-dataengineering-dbt-snowflake/dataset/olist_order_payments_dataset.csv',
-        '/mnt/c/Users/PROGRESSIVE/Desktop/dataengineers_projects/e-commarce-dataengineering-dbt-snowflake/dataset/olist_order_reviews_dataset.csv',
-        '/mnt/c/Users/PROGRESSIVE/Desktop/dataengineers_projects/e-commarce-dataengineering-dbt-snowflake/dataset/olist_orders_dataset.csv',
-        '/mnt/c/Users/PROGRESSIVE/Desktop/dataengineers_projects/e-commarce-dataengineering-dbt-snowflake/dataset/olist_products_dataset.csv',
-        '/mnt/c/Users/PROGRESSIVE/Desktop/dataengineers_projects/e-commarce-dataengineering-dbt-snowflake/dataset/olist_sellers_dataset.csv',
-        '/mnt/c/Users/PROGRESSIVE/Desktop/dataengineers_projects/e-commarce-dataengineering-dbt-snowflake/dataset/product_category_name_translation.csv'
+        '/opt/airflow/dags/dataset/olist_customers_dataset.csv',
+        '/opt/airflow/dags/dataset/olist_geolocation_dataset.csv',
+        '/opt/airflow/dags/dataset/olist_order_items_dataset.csv',
+        '/opt/airflow/dags/dataset/olist_order_payments_dataset.csv',
+        '/opt/airflow/dags/dataset/olist_order_reviews_dataset.csv',
+        '/opt/airflow/dags/dataset/olist_orders_dataset.csv',
+        '/opt/airflow/dags/dataset/olist_products_dataset.csv',
+        '/opt/airflow/dags/dataset/olist_sellers_dataset.csv',
+        '/opt/airflow/dags/dataset/product_category_name_translation.csv'
     ]
     
     

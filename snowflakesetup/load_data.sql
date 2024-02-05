@@ -7,7 +7,7 @@ USE WAREHOUSE DATAENGINE;
 list @raw_ecommarce_stage;
 
 --- LOAD DATAS INTO TABLES
-create OR REPLACE pipe ECOMMARCE.RAW_PRODUCTS.SALESPIP auto_ingest=true as
+create OR REPLACE pipe ECOMMARCE.RAW_PRODUCTS.PRODUCT_PIPE auto_ingest=true as
 COPY INTO ECOMMARCE.RAW_PRODUCTS.PRODUCT(
     PRODUCT_ID,
     product_category_name,
@@ -19,7 +19,7 @@ from @raw_ecommarce_stage/olist_products_dataset.csv
 (FILE_FORMAT =>products_csv__with_double_qout_format));
 
 
-create OR REPLACE pipe ECOMMARCE.RAW_PRODUCTS.SALESPIP auto_ingest=true as
+create OR REPLACE pipe ECOMMARCE.RAW_PRODUCTS.PRODUCT_DETAILS_PIPE auto_ingest=true as
 COPY INTO  ECOMMARCE.RAW_PRODUCTS.PRODUCT_DETAILS (
     product_id,
     product_description_length,
@@ -36,12 +36,12 @@ $9::FLOAT AS PRODUCT_WIDTH_CM
 from @raw_ecommarce_stage/olist_products_dataset.csv
 (FILE_FORMAT =>products_csv__with_double_qout_format));
 
-create OR REPLACE pipe ECOMMARCE.RAW_PRODUCTS.SALESPIP auto_ingest=true as
+create OR REPLACE pipe ECOMMARCE.RAW_PRODUCTS.PRODUCT_CATEGORY_PIPE auto_ingest=true as
 copy into ECOMMARCE.RAW_PRODUCTS.PRODUCT_CATEGORY_NAME
  from @raw_ecommarce_stage/product_category_name_translation.csv
  FILE_FORMAT = (FORMAT_NAME = products_csv__with_double_qout_format);
 
-create OR REPLACE pipe ECOMMARCE.RAW_PRODUCTS.SALESPIP auto_ingest=true as
+create OR REPLACE pipe ECOMMARCE.RAW_PRODUCTS.CUSTOMER_PIPE auto_ingest=true as
  copy into ECOMMARCE.RAW_PRODUCTS.CUSTOMERS
  from @raw_ecommarce_stage/olist_customers_dataset.csv
  FILE_FORMAT = (FORMAT_NAME = products_csv__with_double_qout_format);
@@ -49,18 +49,18 @@ create OR REPLACE pipe ECOMMARCE.RAW_PRODUCTS.SALESPIP auto_ingest=true as
 
 
 
-create OR REPLACE pipe ECOMMARCE.RAW_PRODUCTS.SALESPIP auto_ingest=true as
+create OR REPLACE pipe ECOMMARCE.RAW_PRODUCTS.SELLERS_PIPE auto_ingest=true as
  copy into ECOMMARCE.RAW_PRODUCTS.SELLER
  from @raw_ecommarce_stage/olist_sellers_dataset.csv
  FILE_FORMAT = (FORMAT_NAME = products_csv__with_double_qout_format);
 
 
-create OR REPLACE pipe ECOMMARCE.RAW_PRODUCTS.SALESPIP auto_ingest=true as
+create OR REPLACE pipe ECOMMARCE.RAW_PRODUCTS.PAYMENT_PIPE auto_ingest=true as
 copy into ECOMMARCE.RAW_PRODUCTS.PAYMENTS
  from @raw_ecommarce_stage/olist_order_payments_dataset.csv
  FILE_FORMAT = (FORMAT_NAME = products_csv__with_double_qout_format);
 
-create OR REPLACE pipe ECOMMARCE.RAW_PRODUCTS.SALESPIP auto_ingest=true as
+create OR REPLACE pipe ECOMMARCE.RAW_PRODUCTS.GEO_PIPE auto_ingest=true as
 copy into ECOMMARCE.RAW_PRODUCTS.GEOLOCATION
  from @raw_ecommarce_stage/olist_geolocation_dataset.csv
  FILE_FORMAT = (FORMAT_NAME = products_csv__with_double_qout_format);
@@ -68,20 +68,20 @@ copy into ECOMMARCE.RAW_PRODUCTS.GEOLOCATION
 
 
 
-create OR REPLACE pipe ECOMMARCE.RAW_PRODUCTS.SALESPIP auto_ingest=true as
+create OR REPLACE pipe ECOMMARCE.RAW_PRODUCTS.ORDER_PIP auto_ingest=true as
 copy into ECOMMARCE.RAW_PRODUCTS.ORDERS
  from @raw_ecommarce_stage/olist_orders_dataset.csv
  FILE_FORMAT = (FORMAT_NAME = products_csv__with_double_qout_format);
 
 
-create OR REPLACE pipe ECOMMARCE.RAW_PRODUCTS.SALESPIP auto_ingest=true as
+create OR REPLACE pipe ECOMMARCE.RAW_PRODUCTS.ORDER_REVIEW_PIPE auto_ingest=true as
 copy into ECOMMARCE.RAW_PRODUCTS.ORDER_REVIEWS
  from @raw_ecommarce_stage/olist_order_reviews_dataset.csv
  FILE_FORMAT = (FORMAT_NAME = products_csv__with_double_qout_format);
 
 
 
- create OR REPLACE pipe ECOMMARCE.RAW_PRODUCTS.SALESPIP auto_ingest=true as
+ create OR REPLACE pipe ECOMMARCE.RAW_PRODUCTS.ORDER_ITEMS_PIPE auto_ingest=true as
 copy into ECOMMARCE.RAW_PRODUCTS.ORDER_ITEMS
  from @raw_ecommarce_stage/olist_order_items_dataset.csv
  FILE_FORMAT = (FORMAT_NAME = products_csv__with_double_qout_format);

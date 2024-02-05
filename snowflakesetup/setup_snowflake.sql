@@ -60,6 +60,9 @@ CREATE or replace STAGE raw_ecommarce_stage
 list @raw_ecommarce_stage;
 
 
+truncate ECOMMARCE.RAW_PRODUCTS.PAYMENTS;
+
+
   
 
 
