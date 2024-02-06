@@ -75,7 +75,7 @@ sources:
           - name: payment_type
             test:
               - accepted_value:
-                value:
-                 - credit_card
-                 - boleto
+                  value:
+                    - credit_card
+                    - boleto
 

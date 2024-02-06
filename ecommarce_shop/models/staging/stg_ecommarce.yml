@@ -1,0 +1,77 @@
+version: 2
+
+models:
+  - name: stg_customer
+    description: one unique customer
+    column:
+      - name: customer_id
+        test:
+          - unique
+          - not_null
+
+  - name: stg_orders
+    description: unique orders with id
+    column:
+      - name: order_id
+        test:
+          - unique
+          - not_null
+  
+  - name: stg_order_items
+    description: unique order_items with id
+    column:
+      - name: order_item_id
+        test:
+          - unique
+          - not_null
+  
+  - name: stg_product
+    description: unique product with id
+    column:
+      - name: product_id
+        test:
+          - unique
+          - not_null
+
+  - name: stg_seller
+    description: unique seller with id
+    column:
+      - name: seller_id
+        test:
+          - unique
+          - not_null
+
+  - name: stg_payment
+    description: payment with accepted value
+    test:
+      - accepted_value:
+          value:
+            - credit_card
+            - boleto
+  
+  - name: stg_order_review
+    description: unique order_review with id
+    column:
+      - name: review_id
+        test:
+          - unique
+          - not_null
+  
+  - name: stg_product_details
+    description: unique order_review with id
+    column:
+      - name: product_id
+        test:
+          - unique
+          - not_null
+
+  - name: stg_geolocation
+    description: list of all geolocation of customers and sellers sales
+
+  - name: stg_product_category
+    description: list of all products category
+
+
+    
+    
+
