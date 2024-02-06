@@ -1,0 +1,81 @@
+version: 2
+
+sources:
+  - name: ecommarce_shop
+    descriptions: ecommarce dataset for sales 
+    database: ecommarce
+    schema: raw_product
+
+    tables:
+      - name: customers
+        description: raw customer data
+        column:
+         - name: customer_id
+           test:
+             - unique
+             - not_null
+
+      - name: geolocation
+        description: raw geolocation data
+      - name: orders
+        description: raw orders data
+        column:
+          - name: order_id
+            test:
+              - unique
+              - not_null
+
+      - name: order_reviews
+        description: raw order_reviews data
+        column:
+          - name: review_id
+            test:
+              - unique
+              - not_null
+
+      - name: order_items
+        description: raw order_items data
+        column:
+          - name: order_item_id
+            test:
+              - unique
+              - not_null
+
+      - name: seller
+        description: raw seller data
+        column:
+          - name: seller_id
+            test:
+              - unique
+              - not_null
+
+      - name: product
+        description: raw product data
+        column:
+          - name: product_id
+            test:
+              - unique
+              - not_null
+
+      - name: product_details
+        description: raw product_details data
+        column:
+          - name: product_id
+            test:
+              - unique
+              - not_null
+
+
+      - name: product_category_name
+        description: raw product_category_name data
+
+      - name: payments
+        description: raw payment data
+        column:
+          - name: payment_type
+            test:
+              - accepted_value:
+                value:
+                 - credit_card
+                 - boleto
+
