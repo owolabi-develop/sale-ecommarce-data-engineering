@@ -1,81 +1,81 @@
 version: 2
 
 sources:
-  - name: ecommarce_shop
-    descriptions: ecommarce dataset for sales 
-    database: ecommarce
-    schema: raw_product
-
+  - name: ecommarce_shopes
+    description: ecommarce dataset data for kaggle
+    database: ECOMMARCE
+    schema: RAW_PRODUCTS
     tables:
       - name: customers
-        description: raw customer data
-        column:
-         - name: customer_id
-           test:
-             - unique
-             - not_null
-
-      - name: geolocation
-        description: raw geolocation data
+        description: Raw customers data.
+        columns:
+          - name: customer_id
+            description: primary key for customers.
+            test:
+              - unique
+              - not_null
       - name: orders
-        description: raw orders data
-        column:
+        description: raw orders data.
+        columns:
           - name: order_id
+            description: primary key for orders
+            test:
+              - unique
+              - not_null
+      - name: geolocation
+        description: Raw Geolocation data for customers and seller
+      - name: order_reviews
+        description: raw order reviews data
+        columns:
+          - name: review_id
+            description: primary key for order review
             test:
               - unique
               - not_null
 
-      - name: order_reviews
-        description: raw order_reviews data
-        column:
-          - name: review_id
-            test:
-              - unique
-              - not_null
 
       - name: order_items
         description: raw order_items data
-        column:
-          - name: order_item_id
+        columns:
+          - name: review_items_id
+            description: primary key for order review
             test:
               - unique
               - not_null
-
       - name: seller
         description: raw seller data
-        column:
+        columns:
           - name: seller_id
+            description: primary key for seller
             test:
               - unique
               - not_null
-
       - name: product
         description: raw product data
-        column:
+        columns:
           - name: product_id
+            description: primary key for product
             test:
               - unique
               - not_null
-
       - name: product_details
-        description: raw product_details data
-        column:
+        description: raw product data
+        columns:
           - name: product_id
+            description: foreign key for product
             test:
               - unique
               - not_null
-
-
       - name: product_category_name
-        description: raw product_category_name data
-
+        description: raw product category names
       - name: payments
-        description: raw payment data
-        column:
-          - name: payment_type
+        description: raw customers payment details
+        columns:
+          - name: PAYMENT_TYPE
+            description: the type of payment accepted
             test:
               - accepted_value:
                   value:
                     - credit_card
                     - boleto
-
+                    - voucher

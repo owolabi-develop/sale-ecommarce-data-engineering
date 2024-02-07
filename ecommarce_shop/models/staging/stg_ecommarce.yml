@@ -5,6 +5,7 @@ models:
     description: one unique customer
     column:
       - name: customer_id
+        description: the primary key for stg_customers
         test:
           - unique
           - not_null
@@ -13,6 +14,7 @@ models:
     description: unique orders with id
     column:
       - name: order_id
+        description: primary key for stg_orders
         test:
           - unique
           - not_null
@@ -21,6 +23,7 @@ models:
     description: unique order_items with id
     column:
       - name: order_item_id
+        description: primary key for stg_order_items
         test:
           - unique
           - not_null
@@ -29,6 +32,7 @@ models:
     description: unique product with id
     column:
       - name: product_id
+        description: primary key for stg_product
         test:
           - unique
           - not_null
@@ -37,6 +41,7 @@ models:
     description: unique seller with id
     column:
       - name: seller_id
+        description: primary key for stg_seller
         test:
           - unique
           - not_null
@@ -53,6 +58,7 @@ models:
     description: unique order_review with id
     column:
       - name: review_id
+        description: primary key for stg_order_review
         test:
           - unique
           - not_null
@@ -61,6 +67,7 @@ models:
     description: unique order_review with id
     column:
       - name: product_id
+        decription: foreign key for product
         test:
           - unique
           - not_null
