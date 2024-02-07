@@ -18,6 +18,8 @@
 <img width="2961" alt="project4" src="https://github.com/owolabi-develop/sale-ecommarce-data-engineering/assets/94055941/3f7af8e6-1723-431f-95a6-c43922e88e17">
 
 ## Visualization
+![ecommarce_dashboard](https://github.com/owolabi-develop/sale-ecommarce-data-engineering/assets/94055941/30a46ef6-1170-4498-9581-f8d2534c6514)
+
 
 
 ## Tech stack
